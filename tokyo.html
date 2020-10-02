@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>时钟</title>
+</head>
+<style type="text/css">
+	.back {
+		width: 27rem;
+		height: 27rem;
+		margin: 1rem auto;
+		border-radius: 50%;
+		background-image: url("https://p.ananas.chaoxing.com/star3/origin/0411919c8e597d3e160e8e8aebaeb23f.png");
+		background-position: -6.7rem -6.3rem;
+		position: relative;
+	}
+
+	.time_h {
+		width: 12rem;
+		height: 0.35rem;
+		margin-top: -0.175rem;
+		margin-left: -6rem;
+	}
+
+	.time_m {
+		width: 16rem;
+		height: 0.25rem;
+		margin-top: -0.125rem;
+		margin-left: -8rem;
+	}
+
+	.time_s {
+		width: 21.4rem;
+		height: 0.15rem;
+		margin-top: -0.075rem;
+		margin-left: -10.7rem;
+
+	}
+
+	.time_h_h {
+		width: 6rem;
+		height: 0.35rem;
+	}
+
+	.time_m_m {
+		width: 8rem;
+		height: 0.25rem;
+	}
+
+	.time_s_s {
+		width: 10.7rem;
+		height: 0.15rem;
+	}
+
+	.time_h_h {
+		float: right;
+		background: rgba(0, 0, 0, 0.9);
+	}
+	.time_m_m {
+		float: right;
+		background: rgba(0, 0, 0, 0.9);
+	}
+	.time_s_s {
+		float: right;
+		background: rgba(255, 0, 0, 0.9);
+	}
+
+	.time_h,
+	.time_m,
+	.time_s {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: rotate(-90deg)
+	}
+</style>
+
+<body>
+
+<div class="back">
+	<div class="time_h">
+		<div class="time_h_h">
+
+		</div>
+	</div>
+	<div class="time_m">
+		<div class="time_m_m">
+
+		</div>
+	</div>
+	<div class="time_s">
+		<div class="time_s_s">
+
+		</div>
+	</div>
+</div>
+
+<div style="text-align:center;margin:5px 0; font:normal 26px/38px 'MicroSoft YaHei';">
+<p>Tokyo 东京</p>
+<p id="yearmd"></p>
+
+<script type="text/javascript">		
+	var divH = document.getElementsByClassName("time_h")
+	var divM = document.getElementsByClassName("time_m")
+	var divS = document.getElementsByClassName("time_s")
+	setInterval(function() {
+		var d = new Date()
+	    var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+        var newtime = new Date(utc + (3600000 * 9));
+		var h = newtime.getHours()
+		var m = newtime.getMinutes()
+		var s = newtime.getSeconds()
+		var y = newtime.getFullYear()
+		var riqi = newtime.toDateString()
+		document.getElementById("yearmd").innerHTML = riqi;		
+		console.log(h,m,s)			
+		divH[0].style.transform = "rotate(" + (-90 + (h + m/60) / 12 * 360) + "deg)"
+		divM[0].style.transform = "rotate(" + (-90 + m * 6) + "deg)"
+		divS[0].style.transform = "rotate(" + (-90 + s * 6) + "deg)"
+	}, 1000)
+</script>
+
+
+</div>
+</body>
+</html>
